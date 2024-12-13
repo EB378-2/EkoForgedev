@@ -5,6 +5,11 @@ import Image from "next/image";
 import Contact from "@/components/Contact";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -22,11 +27,11 @@ export default function Home() {
   return (
     <>
     <Navbar locale={""} />
-    <div className="flex flex-col items-center justify-center w-screen bg-black text-white">
-      <main className="w-full">
+    <div className="flex flex-col items-center justify-center w-screen bg-gradient-to-tr from-purple-500 to-pink-500 text-white">
+      <main className="w-full bg-black/85">
         {/* Hero Section */}
-        <div className="relative flex flex-col items-center justify-center bg-black text-center">
-          <div className="relative md:min-h-[50vh] min-h-[20vh]  w-full overflow-hidden bg-black flex items-center justify-center">
+        <div className="relative flex flex-col items-center justify-center text-center">
+          <div className="relative md:min-h-[50vh] min-h-[35vh] w-full overflow-hidden flex items-center justify-center">
             <h1
               className="text-[7vw] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight text-center whitespace-nowrap"
               style={{ lineHeight: "1.2" }}
@@ -118,22 +123,54 @@ export default function Home() {
           <p className="mt-4 text-lg sm:text-xl text-yellow-400">{t("CTA5")}</p>
         </div>
 
-        {/* Testimonials Section */}
+        {/* Testimonials Section as Slideshow */}
         <div className="mt-16 w-screen px-4 sm:px-6 lg:px-16 flex justify-center text-center" id="testimonials">
-          <div className="flex flex-col sm:flex-row items-center gap-8 p-8 border-b border-white rounded-b-lg">
-            <Image
-              src="/ekotestimoonial1.png"
-              width={150}
-              height={150}
-              alt="Testimonial Client Logo Blurred"
-              className="rounded-full"
-            />
-            <div className="flex-col">
-              <h2 className="text-lg sm:text-xl">{t("testimonials1")}</h2>
-              <p className="mt-4 text-yellow-400">— Kimmo, 2024</p>
-            </div>
+            <Swiper
+              spaceBetween={30}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              navigation
+              className="w-full max-w-5xl"
+            >
+              {[
+                {
+                  image: "/ekotestimoonial1.png",
+                  alt: "Testimonial Client 1",
+                  text: t("testimonials1"),
+                  author: "Kimmo, 2024",
+                },
+                {
+                  image: "/ekotestimoonial2.png",
+                  alt: "Testimonial Client 2",
+                  text: t("testimonials2"),
+                  author: "Emily, 2023",
+                },
+                {
+                  image: "/ekotestimoonial3.png",
+                  alt: "Testimonial Client 3",
+                  text: t("testimonials3"),
+                  author: "John, 2022",
+                },
+              ].map((testimonial, index) => (
+                <SwiperSlide key={index}>
+                  <div className="flex flex-col sm:flex-row items-center gap-8 p-8 border-b border-white rounded-b-lg">
+                    <Image
+                      src={testimonial.image}
+                      width={150}
+                      height={150}
+                      alt={testimonial.alt}
+                      className="rounded-full"
+                    />
+                    <div className="flex-col">
+                      <h2 className="text-lg sm:text-xl">{testimonial.text}</h2>
+                      <p className="mt-4 text-yellow-400">— {testimonial.author}</p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
-        </div>
+
 
         {/* Distinction Section */}
         <div className="px-4 sm:px-6 lg:px-16 text-center mt-16">
