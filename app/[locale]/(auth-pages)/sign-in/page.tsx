@@ -14,7 +14,7 @@ export default async function Login(props: {
   const paramDetails = await props.params;   // Await the resolution of the params promise
   const locale = paramDetails.locale;  
   return (
-    <form className="flex flex-col min-w-64 max-w-64 mt-10 mx-auto allign-center">
+    <form className="flex flex-col min-w-64 max-w-64 mt-10 mx-auto align-center">
       <h1 className="text-2xl font-medium">Sign in</h1>
       <p className="text-sm text-foreground">
         Don&apos;t have an account?{" "}
