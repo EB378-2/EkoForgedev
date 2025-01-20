@@ -29,8 +29,8 @@ const Navbar = ({
   };
 
   return (
-    <nav className="bg-black text-white w-screen">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav className="bg-black text-white w-screen max-h-16 md:max-h-24">
+      <div className="max-w-7xl mx-auto px-6 sm:py-2 md:py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href={`/${currentLocale}/`}>
           <Image
@@ -44,35 +44,35 @@ const Navbar = ({
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-xl focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          className="lg:hidden text-xl focus:outline-none focus:ring-2 focus:ring-yellow-500"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           ☰
         </button>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden lg:flex gap-8">
           <Link
             href={`/${currentLocale}/#aircraft-options`}
-            className="text-lg font-bold hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-400 to-white transition-transform transform hover:scale-110"
+            className="text-md font-bold hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-400 to-white transition-transform transform hover:scale-110"
           >
             {t("aircraftOptions")}
           </Link>
           <Link
             href={`/${currentLocale}/#contactsec`}
-            className="text-lg font-bold hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-400 to-white transition-transform transform hover:scale-110"
+            className="text-md font-bold hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-400 to-white transition-transform transform hover:scale-110"
           >
             {t("contact")}
           </Link>
           <Link
             href={`/${currentLocale}/protected/book`}
-            className="text-lg font-bold hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-400 to-white transition-transform transform hover:scale-110"
+            className="text-md font-bold hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-400 to-white transition-transform transform hover:scale-110"
           >
             {t("bookFlight")}
           </Link>
           <Link
             href={`/${currentLocale}/protected`}
-            className="text-lg font-bold hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-400 to-white transition-transform transform hover:scale-110"
+            className="text-md font-bold hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-400 to-white transition-transform transform hover:scale-110"
           >
             Protected
           </Link>
